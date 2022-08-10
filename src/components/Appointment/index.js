@@ -1,8 +1,8 @@
 import "./styles.scss";
 import React from 'react';
 import Header from "./Header";
-// import Show from "./Show";
-// import Empty from "./Empty";
+import Show from "./Show";
+import Empty from "./Empty";
 // import Form from "./Form";
 // import Confirm from "./Confirm";
 // import Error from "./Error";
@@ -137,7 +137,11 @@ export default function Appointment(props) {
         {
           mode === 'EDIT'
           &&
-          (<Form 
+          (<Form
+            student={props.interview.student}
+            interviewer={
+              props.interview.interviewer
+            }    
             interviewers={props.interviewers}
             onChange={() => transition(SHOW)}
             onSave={save}
