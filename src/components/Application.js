@@ -28,7 +28,8 @@ export default function Application(props) {
     setDay: day => console.log(day)
   });
 
-
+console.log('day' + day);
+console.log('setDay' + setDay);
 
   return (
     <main className="layout">
