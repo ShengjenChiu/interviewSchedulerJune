@@ -103,7 +103,11 @@ export default function Appointment(props) {
     >
       <Header time={props.time} />
       {!props.interview && <Empty />}
-      {props.interview && <Show />}
+      {props.interview && 
+        <Show 
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.name}
+        />}
 
         {/* <Header time={props.time} />
         { 
