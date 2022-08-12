@@ -3,10 +3,9 @@ import InterviewerListItem from 'components/InterviewerListItem';
 import "components/InterviewerList.scss";
 
 //the function of the InterviewerList component
-//Object.values(props.interviewers);
 export default function InterviewerList(props) {
-
-const intArr = props.interviewers;
+  
+  const intArr =  Object.values(props.interviewers);
 
   //the array of InterviewerList's child InterviewerListItem component
   const interviewersArr = intArr.map(_interviewer => {

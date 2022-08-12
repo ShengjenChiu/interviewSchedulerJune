@@ -3,16 +3,16 @@ import React from 'react';
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
-// import Form from "./Form";
+import Form from "./Form";
 // import Confirm from "./Confirm";
 // import Error from "./Error";
 // import Status from "./Status";
-// import useVisualMode from "hooks/useVisualMode";
+import useVisualMode from "hooks/useVisualMode";
 
 //the visual mode constants
-// const EMPTY = "EMPTY";
-// const SHOW = "SHOW";
-// const CREATE = "CREATE";
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
+const CREATE = "CREATE";
 // const EDIT = "EDIT";
 // const SAVING = "SAVING";
 // const DELETING = "DELETING";
@@ -23,9 +23,9 @@ import Empty from "./Empty";
 //the function of the Appointment component with connections of its children nodes
 export default function Appointment(props) {
 
-  // const { mode, transition, back } = useVisualMode(
-  //   props.interview ? SHOW
-  //   : EMPTY);
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW
+    : EMPTY);
 
   // const messageSave = "Saving";
   // const messageSaveErr = "Could not book appointment";
@@ -53,15 +53,15 @@ export default function Appointment(props) {
   // }
 
 
-  // //create new form
-  // function onAdd() {
-  //   transition(CREATE);
-  // }          
+  //create new form
+  function onAdd() {
+    transition(CREATE);
+  }          
    
-  // //cancel current mode 
-  // function onCancel() {
-  //   back();
-  // }
+  //cancel current mode 
+  function onCancel() {
+    back();
+  }
   
   // //turn to edit mode
   // function onEdit() {
@@ -101,15 +101,7 @@ export default function Appointment(props) {
   return (
     <article className="appointment" data-testid="appointment"
     >
-      <Header time={props.time} />
-      {!props.interview && <Empty />}
-      {props.interview && 
-        <Show 
-          student={props.interview.student}
-          interviewer={props.interview.interviewer.name}
-        />}
-
-        {/* <Header time={props.time} />
+        <Header time={props.time} />
         { 
           mode === 'EMPTY'
           && 
@@ -123,27 +115,26 @@ export default function Appointment(props) {
           &&
           (<Form
             interviewers={props.interviewers}
-            onChange={() => transition(SAVING)}
-            onSave={save}
+            // onChange={() => transition(SAVING)}
+            // onSave={save}
             onCancel={onCancel}
           />)
         }
+
 
         {
           mode === 'SHOW'
           && 
           <Show
             student={props.interview.student}
-            interviewer={
-              props.interview.interviewer
-            }
-            interviewers={props.interviewers}
-            onEdit={onEdit}
-            onDelete={onDelete}
+            interviewer={props.interview.interviewer.name}
+            // interviewers={props.interviewers}
+            // onEdit={onEdit}
+            // onDelete={onDelete}
           />
         }
 
-        {
+        {/* {
           mode === 'EDIT'
           &&
           (<Form
@@ -156,18 +147,18 @@ export default function Appointment(props) {
             onSave={save}
             onCancel={onCancel}
           />)
-        } 
+        }  */}
 
-        {
+        {/* {
           mode === 'SAVING'
          &&
           <Status
             message={messageSave}
             onCompleteS={onCompleteS}
           />
-        }
+        } */}
 
-        {
+        {/* {
           mode === 'CONFIRM'
          &&
           <Confirm
@@ -175,27 +166,27 @@ export default function Appointment(props) {
             onCancel={onCancel}
             onConfirm={onConfirm}
           />
-        }
+        } */}
 
-        {
+        {/* {
           mode === 'DELETING'
          &&
           <Status
             message={messageDelete}
             onComplete={onComplete}
           />
-        } 
+        }  */}
 
-        {
+        {/* {
           mode === 'ERROR_SAVE'
          &&
           <Error
             message={messageSaveErr}
             onCancel={onCancel}
           />
-        }
+        } */}
 
-        {
+        {/* {
           mode === 'ERROR_DELETE'
          &&
           <Error 

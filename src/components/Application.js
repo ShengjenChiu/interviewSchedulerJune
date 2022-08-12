@@ -33,6 +33,8 @@ export default function Application() {
     });
   }, []);
 
+
+
   //Convert Object of objects into Array of objects and
   //Turn appointment array into appointment components array for each weekday
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -41,11 +43,11 @@ export default function Application() {
     return (
       <Appointment
         key={appointment.id}
-        id={appointment.id}  
-        time={appointment.time}
+        {...appointment}
         interview={interview} 
-
+        interviewers={state.interviewers}
       />
+      
     );  
   }); 
 

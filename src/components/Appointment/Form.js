@@ -8,7 +8,7 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] =useState(props.interviewer || null);
 
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   
   //To handle errors of both student and interviewer
   // function validate() {
@@ -55,10 +55,10 @@ export default function Form(props) {
           />
         </form>
 
-        <section className="appointment__validation">
+        {/* <section className="appointment__validation">
           {error}
-        </section>
-        
+        </section> */}
+
         <InterviewerList
           interviewers={props.interviewers}
           value={interviewer}
