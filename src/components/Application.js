@@ -3,7 +3,7 @@ import axios from "axios";
 import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "./Appointment/index";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 export default function Application() {
@@ -33,7 +33,8 @@ export default function Application() {
     });
   }, []);
 
-
+  //get interviewers for a day
+  const interviewers = getInterviewersForDay(state, state.day);
 
   //Convert Object of objects into Array of objects and
   //Turn appointment array into appointment components array for each weekday
@@ -45,7 +46,7 @@ export default function Application() {
         key={appointment.id}
         {...appointment}
         interview={interview} 
-        interviewers={state.interviewers}
+        interviewers={interviewers}
       />
       
     );  

@@ -37,7 +37,30 @@ function getInterview(state, interview) {
 
 }
 
+//returns an array of Interviewers for that day
+function getInterviewersForDay(state, day) {
+  const resultsArr = [];
+  const daysObj = state.days;
+  const interviewersObj = state.interviewers;
+
+  for (let i = 0; i < daysObj.length; i++) {
+    if (daysObj[i].name === day) {
+      let daysInterviewers = daysObj[i].interviewers;
+
+      for (let j = 0; j < daysInterviewers.length; j++) {
+
+        if (interviewersObj[daysInterviewers[j]]) {
+          resultsArr.push(interviewersObj[daysInterviewers[j]]);
+        }
+      }
+    }
+  }
+
+  return resultsArr;
+}
+
 module.exports = {
   getAppointmentsForDay,
-  getInterview
+  getInterview,
+  getInterviewersForDay
 };
