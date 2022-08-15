@@ -25,11 +25,17 @@ export default function Form(props) {
   //   props.onSave(student, interviewer);
   // }
 
+  //local save function to pass save function defined in the
+  //Appointment component to the Form component
+  function save() {
+    props.onSave(student, interviewer);
+  }
   //To reset both student and interviewer
   function reset() {
     setStudent("");
     setInterviewer(null);
   }
+
 
   //cancel function to resetting the form and cancel 
   // by the user click the Cancel button
@@ -72,7 +78,7 @@ export default function Form(props) {
           <Button danger onClick={() => cancel()}>
             Cancel
           </Button>
-          <Button confirm onClick={props.onSave}>
+          <Button confirm onClick={save}>
             Save
           </Button>
         </section>
