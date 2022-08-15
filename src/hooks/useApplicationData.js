@@ -34,15 +34,20 @@ export default function useApplicationData() {
 
   //keep track of correct and updated number of interview spots available 
   function spotsAvailDay(newState, newAppointments) {
-    
+    //iterate all days from Monday to Friday
+    //and return all updated spots for all weekdays
     return newState.days.map((day) => {
       let spotsAvail = 0;
-
+      
+      //go thru all of the appointments during that particular one day 
       for (let id of day.appointments) {
+        //if the interview object of that one appointment is null
         if (!newAppointments[id].interview) {
           spotsAvail++;
         }
       }
+
+      //return the updated number of spots for one weekday
       return { ...day, spots: spotsAvail };
     });
 
@@ -64,10 +69,11 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-
+    
+    //array of days objects with updated spots
     const days = spotsAvailDay(state, appointments)
 
-    //send to api database and update it.
+    //send to api database and update appointments and days states.
     return axios.put(`/api/appointments/${id}`, { interview })
     .then(() => {
       setState({ ...state, appointments, days });
@@ -89,7 +95,8 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-
+    
+    //array of days objects with updated spots
     const days = spotsAvailDay(state, appointments);
 
     //return the updated appointment
