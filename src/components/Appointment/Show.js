@@ -3,12 +3,6 @@ import React from "react";
 //the function of the Show component
 export default function Show(props) {
 
-  // const getInterviewerName = function(id) {
-  //   if(id === props.interviewer) {
-  //     return props.interviewers[id].name;
-  //   }
-  // }
-
   return (
     <main className="appointment__card appointment__card--show">
 

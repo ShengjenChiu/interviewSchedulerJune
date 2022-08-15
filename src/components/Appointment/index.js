@@ -22,11 +22,12 @@ const ERROR_DELETE = "ERROR_DELETE";
 
 //the function of the Appointment component with connections of its children nodes
 export default function Appointment(props) {
-
+  //comstom Hook useVisualMode's initialization
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW
       : EMPTY);
 
+  //text message for saving, deleting and their errors
   const messageSave = "Saving";
   const messageSaveErr = "Could not book appointment";
 
@@ -47,8 +48,8 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
       .then(() => {
         transition(SHOW);
-      });
-    // .catch(error => transition(ERROR_SAVE, true));
+      })
+    .catch(error => transition(ERROR_SAVE, true));
   }
 
 
@@ -62,7 +63,7 @@ export default function Appointment(props) {
     back();
   }
 
-  // //turn to edit mode
+  //turn to edit mode
   function onEdit() {
     transition(EDIT);
   }
@@ -72,7 +73,7 @@ export default function Appointment(props) {
     transition(CONFIRM);
   }
 
-  //before deleting
+  //just right before the actual deleting
   function onConfirm() {
     transition(DELETING, true);
     props
@@ -80,13 +81,13 @@ export default function Appointment(props) {
       .then(() => {
         onComplete();
       })
-    // .catch(error => {
-    //     transition(ERROR_DELETE, true)
-    //   }
-    // )
+    .catch(error => {
+        transition(ERROR_DELETE, true)
+      }
+    )
   }
 
-  //after deleting
+  //after deleting, go back to the Empty component
   function onComplete() {
     transition(EMPTY);
   }
@@ -137,21 +138,21 @@ export default function Appointment(props) {
       { mode === 'SAVING' && <Status message={messageSave} /> }
 
       {
+        mode === 'DELETING'
+        &&
+        <Status
+          message={messageDelete}
+          onComplete={onComplete}
+        />
+      }
+
+      {
         mode === 'CONFIRM'
         &&
         <Confirm
           message={messageConfirm}
           onCancel={onCancel}
           onConfirm={onConfirm}
-        />
-      }
-
-      {
-        mode === 'DELETING'
-        &&
-        <Status
-          message={messageDelete}
-          onComplete={onComplete}
         />
       }
 
