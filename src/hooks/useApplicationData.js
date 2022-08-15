@@ -65,10 +65,6 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-console.log('&&&&&&&&&&');
-console.log(interview);
-console.log('&&&&&&&&&&');
-
     const days = spotsAvailDay(state, appointments)
 
     //send to api database and update it.

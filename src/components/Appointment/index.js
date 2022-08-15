@@ -126,7 +126,7 @@ export default function Appointment(props) {
         &&
         (<Form
           student={props.interview.student}
-          interviewer={props.interview.interviewer}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onChange={() => transition(SHOW)}
           onSave={save}
