@@ -15,6 +15,64 @@ export default function Application() {
 
   const setDay = day => setState({ ...state, day });
 
+  function bookInterview(id, interview) {
+    //received the individual appointment
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+
+    //place the individual appointment into
+    //the appointments object
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.put(`/api/appointments/${id}`, {
+      interview
+    })
+    .then(() => {
+      setState({
+        ...state,
+        appointments
+      })
+    });
+
+  }
+
+  //change the local state to cancel an interview
+  function cancelInterview(id) {
+    //let the individual appointment
+    //have a null interview
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    //place the individual appointment into
+    //the appointments object
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    // const days = spotsAvailDay(state, appointments);
+
+    //return the updated appointment
+    //back to api database
+    //and update the local appointments object
+    return axios.delete(`/api/appointments/${id}`)
+    .then(() => {
+      setState({
+        ...state,
+        appointments
+        // days
+      });
+    });
+  
+  }
+
   // use effect to axios request data from API
   // and receive response from API
   useEffect(() => {
@@ -45,8 +103,12 @@ export default function Application() {
       <Appointment
         key={appointment.id}
         {...appointment}
+        id={appointment.id}
+        time={appointment.time}
         interview={interview} 
         interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
       
     );  
