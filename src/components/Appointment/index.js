@@ -47,8 +47,8 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
       .then(() => {
         transition(SHOW);
-      })
-    .catch(error => transition(ERROR_SAVE, true));
+      });
+    // .catch(error => transition(ERROR_SAVE, true));
   }
 
 
@@ -67,11 +67,6 @@ export default function Appointment(props) {
     transition(EDIT);
   }
 
-  //after saving
-  // function onCompleteS() {
-
-  // }
-
   //Start the deleting operation
   function onDelete() {
     transition(CONFIRM);
@@ -85,10 +80,10 @@ export default function Appointment(props) {
       .then(() => {
         onComplete();
       })
-    .catch(error => {
-        transition(ERROR_DELETE, true)
-      }
-    );
+    // .catch(error => {
+    //     transition(ERROR_DELETE, true)
+    //   }
+    // )
   }
 
   //after deleting
@@ -145,7 +140,7 @@ export default function Appointment(props) {
         mode === 'CONFIRM'
         &&
         <Confirm
-          messageConfirm={messageConfirm}
+          message={messageConfirm}
           onCancel={onCancel}
           onConfirm={onConfirm}
         />
