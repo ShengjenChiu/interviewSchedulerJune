@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render, cleanup, fireEvent, prettyDOM } from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
 
@@ -45,9 +45,12 @@ describe("Form", () => {
   
     /* 2. Render the Form with interviewers and the onSave mock function passed as an onSave prop, the name prop should be blank or undefined */
     const { getByText } = render(
-      <Form interviewers={interviewers} onSave={onSave} name="Lydia Miller-Jones" />
+      <Form interviewers={interviewers} onSave={onSave} student="Lydia Miller-Jones" />
     );
-  
+
+    //const input = getByRole('textbox');
+    //fireEvent.change(input, {target :{value: "HUS"}});
+
     /* 3. Click the save button */
     fireEvent.click(getByText("Save"));
   
@@ -92,11 +95,11 @@ describe("Form", () => {
       <Form
         interviewers={interviewers}
         onSave={onSave}
-        name="Lydia Miller-Jones"
-        interviewer={interviewers[0]}
+        student="Lydia Miller-Jones"
+        interviewer={interviewers[0].id}
       />
     );
-  
+    
     /* 3. Click the save button */
     fireEvent.click(getByText("Save"));
   
@@ -106,6 +109,20 @@ describe("Form", () => {
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
   });
 
+  it("submits the name entered by the user", () => {
+    const onSave = jest.fn();
+    const { getByText, getByPlaceholderText } = render(
+      <Form interviewers={interviewers} onSave={onSave} interviewer={1} />
+    );
+  
+    const input = getByPlaceholderText("Enter Student Name");
+  
+    fireEvent.change(input, { target: { value: "Lydia Miller-Jones" } });
+    fireEvent.click(getByText("Save"));
+  
+    expect(onSave).toHaveBeenCalledTimes(1);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
+  });
 
   // it("calls onCancel and resets the input field", () => {
   //   const onCancel = jest.fn();

@@ -7,7 +7,6 @@ export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] =useState(props.interviewer || null);
-
   const [error, setError] = useState("");
   
   //To handle errors of both student and interviewer
@@ -20,7 +19,7 @@ export default function Form(props) {
     }
 
     if (interviewer === null) {
-      setError("Please select an interviewer");
+      setError("please select an interviewer");
       return;
     }
     setError('');
