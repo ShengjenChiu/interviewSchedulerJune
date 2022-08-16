@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 //the function of the InterviewerList component
 export default function InterviewerList(props) {
   
+  //turn object prop "interviewers" into an array "inArr"
   const intArr =  Object.values(props.interviewers);
 
   //the array of InterviewerList's child InterviewerListItem component

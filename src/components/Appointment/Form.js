@@ -8,28 +8,25 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] =useState(props.interviewer || null);
 
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
   
   //To handle errors of both student and interviewer
-  // function validate() {
-  //   if (student === "") {
-  //     setError("Student name cannot be blank");
-  //     return;
-  //   }
-
-  //   if (interviewer === null) {
-  //     setError("Please select an interviewer");
-  //     return;
-  //   }
-  //   setError('');
-  //   props.onSave(student, interviewer);
-  // }
-
   //local save function to pass save function defined in the
   //Appointment component to the Form component
-  function save() {
+  function validate() {
+    if (student === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+    setError('');
     props.onSave(student, interviewer);
   }
+
   //To reset both student and interviewer
   function reset() {
     setStudent("");
@@ -47,6 +44,7 @@ export default function Form(props) {
   //render the Form webpage
   return (
     <main className="appointment__card appointment__card--create">
+
       <section className="appointment__card-left" >
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
@@ -61,16 +59,15 @@ export default function Form(props) {
           />
         </form>
 
-        {/* <section className="appointment__validation">
+        <section className="appointment__validation">
           {error}
-        </section> */}
+        </section>
 
         <InterviewerList
           interviewers={props.interviewers}
           value={interviewer}
           onChange={(interviewer) => setInterviewer(interviewer)}
         />
-
       </section>
 
       <section className="appointment__card-right">
@@ -78,13 +75,12 @@ export default function Form(props) {
           <Button danger onClick={() => cancel()}>
             Cancel
           </Button>
-          <Button confirm onClick={save}>
+          <Button confirm onClick={validate}>
             Save
           </Button>
         </section>
       </section>
+
     </main>
   );
 }
-
-// onClick={() => validate()}
