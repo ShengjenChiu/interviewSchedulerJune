@@ -26,19 +26,16 @@ describe("Application", () => {
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     axios.put.mockResolvedValueOnce("it works!");
 
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     
     //print the container
     await waitForElement(() => getByText(container, "Archie Cohen"));
-    console.log(prettyDOM(container));
     
     //print the three appointments
     const appointments = getAllByTestId(container, "appointment");
-    console.log(prettyDOM(appointments));
 
     //print the first appointment, the EMPTY appointment
     const appointment = getAllByTestId(container, "appointment")[0];
-    console.log(prettyDOM(appointment));
 
     fireEvent.click(getByAltText(appointment, "Add"));
 
@@ -48,7 +45,6 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
     
     fireEvent.click(getByText(appointment, "Save"));
-    console.log(prettyDOM(appointment));
 
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
     
@@ -60,8 +56,6 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
-    console.log(prettyDOM(day));
-
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
 
