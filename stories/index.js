@@ -16,6 +16,7 @@ import Status from "components/Appointment/Status.js";
 import Error from "components/Appointment/Error.js";
 import Form from "components/Appointment/Form.js";
 
+//Test story of Button
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -32,6 +33,7 @@ storiesOf("Button", module)
     </Button>
   ));
 
+//Test story of the day list items
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -43,6 +45,7 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
 
+//Mock days array
 const days = [
     {
       id: 1,
@@ -61,6 +64,7 @@ const days = [
     },
   ];
 
+//Test story of the day list
 storiesOf("DayList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -75,12 +79,14 @@ storiesOf("DayList", module)
     <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
   ));
 
+//The mock interviewer object
 const interviewer = {
     id: 1,
     name: "Sylvia Palmer",
     avatar: "https://i.imgur.com/LpaY82x.png"
   };
-  
+
+//Test story of the interviewer list items
 storiesOf("InterviewerListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -108,6 +114,7 @@ storiesOf("InterviewerListItem", module)
     />
   ));
 
+//The mock interviewers array
 const interviewers = [
     { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
     { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -115,7 +122,8 @@ const interviewers = [
     { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
     { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
-  
+
+//Test story of the interviewer list
 storiesOf("InterviewerList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -138,6 +146,7 @@ storiesOf("InterviewerList", module)
     />
   ));
 
+//Test story of the Appointment component
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]

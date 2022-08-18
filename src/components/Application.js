@@ -6,7 +6,7 @@ import Appointment from "./Appointment/index";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
-
+//implementation for the Application component
 export default function Application() {
   //objects fetched from the cumston hook useApplicationData
   const {

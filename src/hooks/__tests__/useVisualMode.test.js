@@ -3,6 +3,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import useVisualMode from "hooks/useVisualMode";
 
 //Constants of the three major modes
+//FIRST as the EMPTY, SECOND as the transition(), and THIRD as the back()
 const FIRST = "FIRST";
 const SECOND = "SECOND";
 const THIRD = "THIRD";

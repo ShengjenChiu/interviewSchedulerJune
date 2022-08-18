@@ -1,0 +1,42 @@
+The main local host url for the react frontend: http://localhost:8000/
+
+=====================================================
+To run the story book (test):
+Under the interviewSchedulerJune directory: npm run storybook
+
+=====================================================
+To run the react frontend:
+Under the interviewSchedulerJune directory: npm start
+
+=====================================================
+The api database name is: scheduler_development
+The user name: labber
+To run the api server:
+Under the scheduler-api directory: npm start
+
+=====================================================
+The URLs to fetch data from the database api server:
+
+http://localhost:8001/api/days
+http://localhost:8001/api/appointments
+http://localhost:8001/api/interviewers
+
+
+=====================================================
+To run the JEST/react-library testing:
+
+Under the interviewSchedulerJune directory: npm test
+
+Jest/react-library testing coverage report:
+
+http://localhost:8000/coverage/lcov-report/index.html
+
+
+=====================================================
+To run the Cypress Tests:
+the database name for the Cypress test: scheduler_test
+
+reset the database before each test: http://localhost:8001/api/debug/reset
+
+Under the scheduler-api directory: npm run test:server
+Under the interviewSchedulerJune directory: npm run cypress
